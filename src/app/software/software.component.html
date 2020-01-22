@@ -1,0 +1,32 @@
+<h2> List of Software: </h2>
+
+<table>
+    <tr>
+        <th>Software name</th>
+        <th>Manage</th>
+    </tr>
+    <tr *ngFor="let soft of software">
+        <td>{{soft.name}}</td>
+        <td><button (click)="onManage(soft.id, soft.name)">Manage Users</button></td>
+    </tr>
+</table>
+
+<form [formGroup]="addSoftwareForm" (ngSubmit)="onAddSoftware()">
+    <input formControlName="name" type="text" placeholder = "Software Name"/>
+    <button type="submit"> Add </button>
+</form>
+
+<div *ngIf="current">
+    <table>
+        <tr>
+            <th> User Name </th>
+            <th> Key </th>
+            <th> Delete</th>
+        </tr>
+        <tr *ngFor="let user of usersForCurrentSoftware">
+            <td>{{user.name}}</td>
+            <td>{{user.license}}</td>
+            <td><button (click)="onRevoke(user.user_id)">Revoke</button></td>
+        </tr>
+    </table>
+</div>
